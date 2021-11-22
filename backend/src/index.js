@@ -7,6 +7,7 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 4000;
 const path = require("path");
+require("../playground");
 
 app.use(express.json());
 // app.use(express.static(path.join(__dirname, "public")));

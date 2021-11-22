@@ -21,3 +21,8 @@
 .euiFilePicker__wrap {
   height: 100% !important;
 }
+
+/* .filepond--root,
+.filepond--root .filepond--drop-label {
+  height: 200px;
+} */

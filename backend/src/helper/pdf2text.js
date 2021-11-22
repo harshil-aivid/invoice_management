@@ -10,12 +10,11 @@ async function getContent(src) {
 async function extractContent(src) {
   // Perform pre-processing
   const content = await getContent(src);
-  // console.log(content.items)
+  // console.log(content.items);
 
   return content.items
     .filter((item) => item.str.trim().length)
-    .map((item) => item.str)
-    .filter((item, i) => i > 7);
+    .map((item) => item.str);
 }
 
 function processItems(items) {

@@ -4,8 +4,6 @@ const Invoice = require("../models/invoice");
 const path = require("path");
 const router = new express.Router();
 const multer = require("multer");
-let fs = require("fs");
-let pdfParser = require("pdf-parse");
 const { extractContent } = require("../helper/pdf2text");
 
 const pdfStorage = multer.diskStorage({
@@ -40,72 +38,19 @@ const pdfUpload = multer({
   },
 });
 
-const PDFParser = require("pdf2json");
-
 router.post(
   "/uploadBills",
   pdfUpload.array("pdfs", 10),
   async function (req, res) {
     const pdfFiles = req.files;
-    const pdf2jsonParser = new PDFParser(this, true);
-    pdf2jsonParser.on("pdfParser_dataError", (errData) =>
-      console.error(errData.parserError)
-    );
-    pdf2jsonParser.on("pdfParser_dataReady", (pdfData) => {
-      console.log(pdf2jsonParser.getRawTextContent());
-      res.json({ extracted: pdf2jsonParser.getRawTextContent() });
-      let convertedText = "";
-      pdfData.Pages.forEach(({ Texts }) => {
-        Texts.forEach(({ R }) =>
-          R.forEach(({ T }) => {
-            convertedText += T;
-          })
-        );
-      });
-      // console.log("Fetched : ", decodeURI(convertedText));
-      console.log("\n**********************************************\n");
-    });
+
     const textExtracted = [];
     for (let i = 0; i < pdfFiles.length; i++) {
       const pathToPDF = pdfFiles[i].path;
-      const items = await extractContent(pathToPDF);
-      // let toText = Pdf2TextObj();
-      // let onPageDone = function () {}; // don't want to do anything between pages
-      // let onFinish = function (fullText) {
-      //   console.log(fullText);
-      // };
-      // toText.pdfToText(pathToPDF, onPageDone, onFinish);
-
-      // const pdffile = fs.readFileSync(pathToPDF);
-      // const data = await pdfParser(pdffile).catch((err) => console.log(err));
+      const items = await extractContent(pathToPDF).catch((e) => []);
       textExtracted.push(items);
-      // pdf2jsonParser.loadPDF(pathToPDF);
     }
     res.json({ extracted: textExtracted });
-    //
-
-    // let pdfParser = new PDFParser();
-    // pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError));
-    // pdfParser.on("pdfParser_dataReady", pdfData => {
-    //     console.log("PDF DATA : ", pdfData.formImage.Pages[0].Texts[0].R[0])
-    //     console.log("EXTRACTED Fields ", pdfParser.getAllFieldsTypes());
-    //     console.log("EXTRACTED Raw Text Data", pdfParser.getRawTextContent(pdfData));
-    //     res.status(201).send(pdfParser.getRawTextContent())
-    // });
-
-    // pdfParser.loadPDF(path.join(__dirname, "pdfFiles_1633285471397.pdf"));
-
-    // const task = new Task(
-    //     ...req.body,
-    //     owner: req.user._id
-    // })
-
-    try {
-      //   await task.save()
-      // res.status(201).send("WOrk");
-    } catch (e) {
-      res.status(400).send(e);
-    }
   }
 );
 
@@ -159,21 +104,8 @@ router.get("/tasks/:id", async (req, res) => {
   }
 });
 
-router.get("/test", async (req, res) => {
-  return "Hello";
-  const _id = req.params.id;
-
-  try {
-    const task = await Task.findOne({ _id, owner: req.user._id });
-
-    if (!task) {
-      return res.status(404).send();
-    }
-
-    res.send(task);
-  } catch (e) {
-    res.status(500).send();
-  }
+router.get("/tu_hai_k_nhi", async (req, res) => {
+  res.send({ status: "Up and runnning like a makkhan" });
 });
 
 router.patch("/tasks/:id", async (req, res) => {
