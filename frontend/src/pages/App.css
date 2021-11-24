@@ -1,0 +1,28 @@
+.w-full {
+  width: 100%;
+}
+
+.min-w-300 {
+  min-width: 300px;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+.euiPageContent.euiPageContent--horizontalCenter {
+  width: 100% !important;
+}
+
+.h-full {
+  height: 100% !important;
+}
+.euiFilePicker--large .euiFilePicker__prompt,
+.euiFilePicker__wrap {
+  height: 100% !important;
+}
+
+/* .filepond--root,
+.filepond--root .filepond--drop-label {
+  height: 200px;
+} */

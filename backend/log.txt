@@ -1,0 +1,476 @@
+{
+  'FLETCHER OIL CO., INC.                                     Page': '1  '
+}
+{}
+{
+  '520 SIXTH AVE                               Invoice No': '1075379  '
+}
+{
+  'COLUMBUS, GA 31902                          Invoice Date': '09/01/21  '
+}
+{ 'Ship    Date': '09/01/21  ' }
+{ 'Profit Center': '6  ' }
+{}
+{
+  'To: 1499 LAFAYETTE PKWY                     To': '1499 LAFAYETTE PKWY  '
+}
+{}
+{
+  'Account No:12290185     PO No:                   Terms': 'EFT NET 5 DAYS  '
+}
+{
+  'Ship Via:FLETCHER OIL CO          Sales ID:      BOL/Ship.Order': ''
+}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{ 'Total Amount': '25,399.25  ' }
+{
+  'FLETCHER OIL CO., INC.                                     Page': '1  '
+}
+{}
+{
+  '520 SIXTH AVE                               Invoice No': '1075574  '
+}
+{
+  'COLUMBUS, GA 31902                          Invoice Date': '09/02/21  '
+}
+{ 'Ship    Date': '09/02/21  ' }
+{ 'Profit Center': '6  ' }
+{}
+{
+  'To: 1499 LAFAYETTE PKWY                     To': '1499 LAFAYETTE PKWY  '
+}
+{}
+{
+  'Account No:12290185     PO No:                   Terms': 'EFT NET 5 DAYS  '
+}
+{
+  'Ship Via:FLETCHER OIL CO          Sales ID:      BOL/Ship.Order': ''
+}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{ 'Total Amount': '15,383.94  ' }
+{
+  'FLETCHER OIL CO., INC.                                     Page': '1  '
+}
+{}
+{
+  '520 SIXTH AVE                               Invoice No': '1075371  '
+}
+{
+  'COLUMBUS, GA 31902                          Invoice Date': '09/02/21  '
+}
+{ 'Ship    Date': '09/02/21  ' }
+{ 'Profit Center': '6  ' }
+{}
+{
+  "To: 3874 ST MARY'S RD                       To": "3874 ST MARY'S RD  "
+}
+{}
+{
+  'Account No:66040191     PO No:                   Terms': 'EFT NET 5 DAYS  '
+}
+{
+  'Ship Via:FLETCHER OIL CO          Sales ID:      BOL/Ship.Order': ''
+}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{ 'Total Amount': '22,600.77  ' }
+(node:25453) [MONGODB DRIVER] Warning: Current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server is up on port 4000
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+(node:26398) [MONGODB DRIVER] Warning: Current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server is up on port 4000
+{
+  'FLETCHER OIL CO., INC.                                     Page': '1  '
+}
+{}
+{
+  '520 SIXTH AVE                               Invoice No': '1075379  '
+}
+{
+  'COLUMBUS, GA 31902                          Invoice Date': '09/01/21  '
+}
+{ 'Ship    Date': '09/01/21  ' }
+{ 'Profit Center': '6  ' }
+{}
+{
+  'To: 1499 LAFAYETTE PKWY                     To': '1499 LAFAYETTE PKWY  '
+}
+{}
+{
+  'Account No:12290185     PO No:                   Terms': 'EFT NET 5 DAYS  '
+}
+{
+  'Ship Via:FLETCHER OIL CO          Sales ID:      BOL/Ship.Order': ''
+}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{ 'Total Amount': '25,399.25  ' }
+{
+  'FLETCHER OIL CO., INC.                                     Page': '1  '
+}
+{}
+{
+  '520 SIXTH AVE                               Invoice No': '1075574  '
+}
+{
+  'COLUMBUS, GA 31902                          Invoice Date': '09/02/21  '
+}
+{ 'Ship    Date': '09/02/21  ' }
+{ 'Profit Center': '6  ' }
+{}
+{
+  'To: 1499 LAFAYETTE PKWY                     To': '1499 LAFAYETTE PKWY  '
+}
+{}
+{
+  'Account No:12290185     PO No:                   Terms': 'EFT NET 5 DAYS  '
+}
+{
+  'Ship Via:FLETCHER OIL CO          Sales ID:      BOL/Ship.Order': ''
+}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{ 'Total Amount': '15,383.94  ' }
+{
+  'FLETCHER OIL CO., INC.                                     Page': '1  '
+}
+{}
+{
+  '520 SIXTH AVE                               Invoice No': '1075371  '
+}
+{
+  'COLUMBUS, GA 31902                          Invoice Date': '09/02/21  '
+}
+{ 'Ship    Date': '09/02/21  ' }
+{ 'Profit Center': '6  ' }
+{}
+{
+  "To: 3874 ST MARY'S RD                       To": "3874 ST MARY'S RD  "
+}
+{}
+{
+  'Account No:66040191     PO No:                   Terms': 'EFT NET 5 DAYS  '
+}
+{
+  'Ship Via:FLETCHER OIL CO          Sales ID:      BOL/Ship.Order': ''
+}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{ 'Total Amount': '22,600.77  ' }
+(node:26532) [MONGODB DRIVER] Warning: Current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server is up on port 4000
+{
+  'FLETCHER OIL CO., INC.                                     Page': '1  '
+}
+{}
+{
+  '520 SIXTH AVE                               Invoice No': '1075379  '
+}
+{
+  'COLUMBUS, GA 31902                          Invoice Date': '09/01/21  '
+}
+{ 'Ship    Date': '09/01/21  ' }
+{ 'Profit Center': '6  ' }
+{}
+{
+  'To: 1499 LAFAYETTE PKWY                     To': '1499 LAFAYETTE PKWY  '
+}
+{}
+{
+  'Account No:12290185     PO No:                   Terms': 'EFT NET 5 DAYS  '
+}
+{
+  'Ship Via:FLETCHER OIL CO          Sales ID:      BOL/Ship.Order': ''
+}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{ 'Total Amount': '25,399.25  ' }
+{
+  'FLETCHER OIL CO., INC.                                     Page': '1  '
+}
+{}
+{
+  '520 SIXTH AVE                               Invoice No': '1075574  '
+}
+{
+  'COLUMBUS, GA 31902                          Invoice Date': '09/02/21  '
+}
+{ 'Ship    Date': '09/02/21  ' }
+{ 'Profit Center': '6  ' }
+{}
+{
+  'To: 1499 LAFAYETTE PKWY                     To': '1499 LAFAYETTE PKWY  '
+}
+{}
+{
+  'Account No:12290185     PO No:                   Terms': 'EFT NET 5 DAYS  '
+}
+{
+  'Ship Via:FLETCHER OIL CO          Sales ID:      BOL/Ship.Order': ''
+}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{ 'Total Amount': '15,383.94  ' }
+{
+  'FLETCHER OIL CO., INC.                                     Page': '1  '
+}
+{}
+{
+  '520 SIXTH AVE                               Invoice No': '1075371  '
+}
+{
+  'COLUMBUS, GA 31902                          Invoice Date': '09/02/21  '
+}
+{ 'Ship    Date': '09/02/21  ' }
+{ 'Profit Center': '6  ' }
+{}
+{
+  "To: 3874 ST MARY'S RD                       To": "3874 ST MARY'S RD  "
+}
+{}
+{
+  'Account No:66040191     PO No:                   Terms': 'EFT NET 5 DAYS  '
+}
+{
+  'Ship Via:FLETCHER OIL CO          Sales ID:      BOL/Ship.Order': ''
+}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{ 'Total Amount': '22,600.77  ' }
+(node:380) [MONGODB DRIVER] Warning: Current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server is up on port 4000
