@@ -1,14 +1,3 @@
-var fs = require("fs");
-var util = require("util");
-const { resolve } = require("path");
-var logFile = fs.createWriteStream("log.txt", { flags: "a" });
-fs.writeFileSync("log.txt", "");
-var logStdout = process.stdout;
-console.log = function () {
-  logFile.write(util.format.apply(null, arguments) + "\n");
-  logStdout.write(util.format.apply(null, arguments) + "\n");
-};
-console.error = console.log;
 const response = [
   [
     "     FLETCHER OIL CO., INC.                                     Page: 1",
