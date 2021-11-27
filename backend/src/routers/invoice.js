@@ -5,6 +5,7 @@ const path = require("path");
 const router = new express.Router();
 const multer = require("multer");
 const { extractContent } = require("../helper/pdf2text");
+const { extractJSONFromPdfTextArray } = require("../helper/text2json");
 
 const pdfStorage = multer.diskStorage({
   // Destination to store image

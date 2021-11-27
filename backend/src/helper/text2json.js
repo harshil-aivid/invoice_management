@@ -1,15 +1,4 @@
-var fs = require("fs");
-var util = require("util");
-const { resolve } = require("path");
-var logFile = fs.createWriteStream("log.txt", { flags: "a" });
-fs.writeFileSync("log.txt", "");
-var logStdout = process.stdout;
-console.log = function () {
-  logFile.write(util.format.apply(null, arguments) + "\n");
-  logStdout.write(util.format.apply(null, arguments) + "\n");
-};
-console.error = console.log;
-const response = [
+const DEMO_RESPONSE = [
   [
     "     FLETCHER OIL CO., INC.                                     Page: 1",
     "     PO BOX 2428",
@@ -106,6 +95,7 @@ const response = [
     "                                              Total Amount:         22,600.77",
   ],
 ];
+
 const extractProductInfo = [
   {
     textToMatch: "10% ETHANOL REGULAR",
@@ -127,41 +117,11 @@ const extractProductInfo = [
     fieldName: "REGULAR",
   },
 ];
-/*
-try :
-        invoice_no = re.search(r'Invoice No:\s*(.*?)\n', content).group(1)
-    except Exception as e:
-        print("[ERROR] : Invoice Number Not Found")
-    
-    try :
-        invoice_date = re.search(r'Invoice Date:\s*(.*?)\n', content).group(1)
-    except Exception as e:
-        print("[ERROR] : Invoice Date Not Found")
-    try :
-        REG =  list(map(lambda s: float(s.replace(",","")) , re.search(r'10% ETHANOL REGULAR\s*(.*?)\n', content).group(1).split()))
-#         REG = list(map(str_to_float,re.search(r'10% ETHANOL REGULAR\s*(.*?)\n', content).group(1).split()))
-    except Exception as e:
-        print("[WARNING] : Regular Not Found")
-    try :
-        SUPER = list(map(lambda s: float(s.replace(",","")) , re.search(r'10% ETHANOL SUPER\s*(.*?)\n', content).group(1).split()))
-    except Exception as e:
-        print("[WARNING] : Super Not Found")
-    try :
-        DIESEL = list(map(lambda s: float(s.replace(",","")) , re.search(r'ON RD DIESEL 15 PPM\s*(.*?)\n', content).group(1).split()))
-    except Exception as e:
-        print("[WARNING] : Diesel Not Found")
-    try :
-        PLUS = list(map(lambda s: float(s.replace(",","")) , re.search(r'SOMESTRING\s*(.*?)\n', content).group(1).split()))
-    except Exception as e:
-        print("[WARNING] : PLUS Not Found")
-    try :
-        total_amount = re.search(r'Total Amount:\s*(.*?)\n', content).group(1)
-        total_amount = float(total_amount.replace(",",""))
-    except Exception as e:
-        print("[ERROR] : Total Amount Not Found")
-    return {"invoice_no":invoice_no,"invoice_date":invoice_date,"REG":REG,"SUPER":SUPER,"PLUS":PLUS,"DIESEL":DIESEL,"total_amount":total_amount}
-*/
-function camelize(str) {
+
+
+const  convertDateToUTC = (date)=> { return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); }
+
+const  camelize = (str) =>{
   return str
     .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
       return index === 0 ? word.toLowerCase() : word.toUpperCase();
@@ -201,7 +161,7 @@ const extractJson = (str) => {
       obj[productData.fieldName] = { price, quantity, total };
     }
   });
-  return obj;
+  return sanatizeObj(obj);
 };
 
 const extractJSONFromPdfTextArray = (textArray)=>{
@@ -212,8 +172,56 @@ const extractJSONFromPdfTextArray = (textArray)=>{
   return overallExtractedJSON;
 }
 
+const sanatizeObj = (obj)=>{
+    let sanatizedObj = {}
+    Object.entries(obj).forEach(([key,value])=>{
+        const type = typeof value;
+          
+        if(type ==="object")
+        {
+            sanatizedObj[key]=sanatizeObj(value);
+           
+        }
+        else if(type === "string"){
 
-response.forEach((text) => {
+            const numericValue = Number(value.replace(/,/g, ''));
+            
+            if(isFinite(numericValue))
+            {
+                sanatizedObj[key] = numericValue;
+            }
+            else {
+                try{
+                   let [month,date , year] = value.split("/");
+                   if(year.length == 2)
+                   {
+                       year ="20"+year;
+                   }
+                   // not solved yet keep the date in UTC
+                   const dateObj = new Date(new Date(year , month -1 , date).toUTCString())
+                   if(dateObj instanceof Date && !isNaN(dateObj.valueOf()))
+                   {
+                       sanatizedObj[key+"Time"]=dateObj.getTime()
+                   }
+                }
+                catch(e){
+                }
+                sanatizedObj[key]=value;
+            }
+        }
+        else{
+            throw new Error("No data type matched !? who are you ?")
+        }
+
+    })
+    return sanatizedObj;
+}
+
+module.exports ={
+    extractJSONFromPdfTextArray
+}
+
+DEMO_RESPONSE.forEach((text) => {
   const demoJSON = extractJSONFromPdfTextArray(text)
   console.log(demoJSON)
 });
