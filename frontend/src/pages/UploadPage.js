@@ -32,7 +32,8 @@ export default () => {
 
     const formData = new FormData();
     files.forEach(({ file }) => formData.append("pdfs", file));
-    const resp = await AxiosConfig.post("/api/uploadBills", formData);
+    const resp = await AxiosConfig.post("/v1/invoice/upload-invoices", formData);
+    setJsonContent(resp.data)
     // const resp1 = await AxiosConfig.get("/api/");
   };
 

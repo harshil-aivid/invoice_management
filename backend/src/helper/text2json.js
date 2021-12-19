@@ -115,6 +115,7 @@ const extractProductInfo = [
   {
     textToMatch: "SOMETHING ETHANOL REGULAR",
     fieldName: "REGULAR",
+    productCode : 404
   },
 ];
 
@@ -128,14 +129,14 @@ const  camelize = (str) =>{
     })
     .replace(/\s+/g, "");
 }
-const extractJson = (str) => {
+const extractJson = (str,obj2) => {
   // const regex2 = /(?:\s\s+)((?!\s{2}).*):\s*(.*)(?:\s\s+|$)/;
   const regexForKeyValuePairs = /(\S+((?!\s{2}).)+):\s*(\S+((?!\s{2}).)*)/;
   const regexForSold = /Sold (\S+((?!\s{2}).)+)/;
   const regexForBLNumber = /B\/L Number--\s+(.*)/;
 
   let m;
-  let obj = {};
+  let obj = {...obj2};
   str = "  " + str;
   if ((m = regexForKeyValuePairs.exec(str)) !== null) {
     obj[camelize(m[1])] = m[3];
@@ -149,8 +150,12 @@ const extractJson = (str) => {
     obj["soldTo"] = m[1];
   }
   if ((m = regexForBLNumber.exec(str)) !== null) {
-    obj["billNumber"] = m[1];
+    obj["billNo"] = m[1];
   }
+  if(!obj["listOfPurchases"]){
+    obj["listOfPurchases"]=[]
+  }
+
   extractProductInfo.forEach((productData) => {
     const regexOfProduct = new RegExp(productData.textToMatch + "(s*(.*))+");
     if ((m = regexOfProduct.exec(str)) !== null) {
@@ -158,28 +163,42 @@ const extractJson = (str) => {
         .replace(/\s+/g, " ")
         .trim()
         .split(" ");
-      obj[productData.fieldName] = { price, quantity, total };
+      // obj[productData.fieldName] = { price, quantity, total };
+     
+      obj["listOfPurchases"].push({ gasTypeName : productData.fieldName , price, quantity, total , productCode:productData.productCode });
     }
   });
-  return sanatizeObj(obj);
+
+  return obj;
 };
 
 const extractJSONFromPdfTextArray = (textArray)=>{
   const overallExtractedJSON = textArray.reduce((obj ,cur) => {
-    const curExtractedObj = extractJson(cur);
+    const curExtractedObj = extractJson(cur,obj);
     return { ...obj, ...curExtractedObj };
   },{});
-  return overallExtractedJSON;
+  console.log(overallExtractedJSON)
+  return sanatizeObj(overallExtractedJSON);
 }
 
 const sanatizeObj = (obj)=>{
     let sanatizedObj = {}
-    Object.entries(obj).forEach(([key,value])=>{
-        const type = typeof value;
+    
+    for (const [key, value] of Object.entries(obj)) {
+      
+      const type = typeof value;
+      
           
         if(type ==="object")
         {
+          if(value instanceof Array){
+            sanatizedObj[key] = obj[key].map((x)=>sanatizeObj(x))
+          }
+          else{
+            
             sanatizedObj[key]=sanatizeObj(value);
+
+          }
            
         }
         else if(type === "string"){
@@ -201,19 +220,23 @@ const sanatizeObj = (obj)=>{
                    const dateObj = new Date(new Date(year , month -1 , date).toUTCString())
                    if(dateObj instanceof Date && !isNaN(dateObj.valueOf()))
                    {
-                       sanatizedObj[key+"Time"]=dateObj.getTime()
+                       sanatizedObj[key+"Time"]=dateObj
+                       sanatizedObj[key+"Obj"]={month:+month , date:+date ,year:+year , timestamp :dateObj.getTime() }
                    }
                 }
                 catch(e){
-                }
                 sanatizedObj[key]=value;
+
+                }
             }
         }
+     
         else{
-            throw new Error("No data type matched !? who are you ?")
+          sanatizedObj[key]=value;
+            // throw new Error("No data type matched !? who are you ?"+key)
         }
 
-    })
+    }
     return sanatizedObj;
 }
 

@@ -20,34 +20,97 @@ const gasTypeSchema = mongoose.Schema({
         required: true,
         trim: true,
         default: 0,
-    }
+    },
+    
+    total: {
+        type: Number,
+        required: true,
+        trim: true,
+        default: 0,
+    },
+    
 
 });
 
 
 const invoiceSchema = new mongoose.Schema({
     invoiceNo: {
-        type: String,
+        type: Number,
         required: true,
         trim: true,
 
     },
-    invoiceDate: {
+    invoiceDateTime: {
         type: Date,
         required: true,
         trim: true
     },
-    shipDate: {
+    invoiceDateObj: {
+        type: Object,
+        trim: true
+    },
+    dateTime: {
         type: Date,
         trim: true
     },
-
+    
+    dateObj: {
+        type: Object,
+        trim: true
+    },
+    profitCenter: {
+        type: Number,
+        
+        
+    },
+    soldTo: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    shipVia: {
+        type: String,
+        
+        trim: true
+    },
+    to: {
+        type: String,
+        
+        trim: true
+    },
     totalAmount: {
         type: Number,
         required: true,
         trim: true
     },
-    regularGas: {
+    accountNo: {
+        type: Number,
+        required: true,
+        trim: true
+    },
+    billNo: {
+        type: Number,
+        required: true,
+        trim: true
+    },
+  
+    listOfPurchases :[gasTypeSchema],
+    rawText: {
+        type: String,
+        
+    },
+   
+}, {
+    timestamps: true
+})
+
+const Invoice = mongoose.model('Invoice', invoiceSchema)
+
+module.exports = Invoice
+
+
+/*
+  regularGas: {
         type: gasTypeSchema,
         required: true,
         default: {
@@ -83,34 +146,4 @@ const invoiceSchema = new mongoose.Schema({
             price: 0,
         }
     },
-    fullText: {
-        type: String,
-        required: true,
-    },
-    soldTo: {
-        type: String,
-        trim: true
-    },
-    shipTo: {
-        type: String,
-        trim: true
-    },
-    address: {
-        type: String,
-        trim: true
-    },
-    shipVia: {
-        type: String,
-        trim: true
-    },
-    billNo: {
-        type: Number,
-        trim: true
-    }
-}, {
-    timestamps: true
-})
-
-const Invoice = mongoose.model('Invoice', invoiceSchema)
-
-module.exports = Invoice
+ */

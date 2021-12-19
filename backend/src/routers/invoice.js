@@ -49,7 +49,8 @@ router.post(
     for (let i = 0; i < pdfFiles.length; i++) {
       const pathToPDF = pdfFiles[i].path;
       const items = await extractContent(pathToPDF).catch((e) => []);
-      textExtracted.push(items);
+      const invoiceInfoJson = extractJSONFromPdfTextArray(items)
+      textExtracted.push(invoiceInfoJson);
     }
     res.json({ extracted: textExtracted });
   }

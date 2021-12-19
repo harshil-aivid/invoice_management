@@ -202,7 +202,7 @@ const extractJSONFromPdfTextArray = (textArray)=>{
 }
 
 
-response.forEach((text) => {
-  const demoJSON = extractJSONFromPdfTextArray(text)
-  console.log(demoJSON)
-});
+// response.forEach((text) => {
+//   const demoJSON = extractJSONFromPdfTextArray(text)
+//   console.log(demoJSON)
+// });
