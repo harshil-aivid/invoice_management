@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DataGrid from '../components/DataGrid';
 import { Table } from '../components/Table';
 import AxiosConfig from "../context/axiosConfig";
 
@@ -16,6 +17,7 @@ class HistoryPage extends Component {
         return (
             <div>
                 <Table items={listOfInvoices} />
+                <DataGrid items={listOfInvoices} />
             </div>
         );
     }

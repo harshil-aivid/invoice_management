@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './pages/App';
+import Main from "./pages/Main"
 import '@elastic/eui/dist/eui_theme_light.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    <Main />
   </React.StrictMode>,
   document.getElementById('root')
 );
