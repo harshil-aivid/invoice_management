@@ -8,7 +8,7 @@
 
 .container {
   width: 80%;
-  margin: 0 auto;
+  margin: 4rem auto;
 }
 .euiPageContent.euiPageContent--horizontalCenter {
   width: 100% !important;
@@ -21,8 +21,3 @@
 .euiFilePicker__wrap {
   height: 100% !important;
 }
-
-/* .filepond--root,
-.filepond--root .filepond--drop-label {
-  height: 200px;
-} */

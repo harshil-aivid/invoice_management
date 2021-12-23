@@ -1,15 +1,15 @@
 import axios from "axios";
 
-const instance = axios.create({
+const AxiosConfig = axios.create({
   baseURL: "http://localhost:4000",
 });
 
 // Where you would set stuff like your 'Authorization' header, etc ...
-instance.defaults.headers.common["Authorization"] = "AUTH TOKEN FROM INSTANCE";
-instance.defaults.headers.post["Content-Type"] = "application/json";
+AxiosConfig.defaults.headers.common["Authorization"] = "AUTH TOKEN FROM AxiosConfig";
+AxiosConfig.defaults.headers.post["Content-Type"] = "application/json";
 // Also add/ configure interceptors && all the other cool stuff
 
-instance.interceptors.request.use(
+AxiosConfig.interceptors.request.use(
   (request) => {
     console.log(request);
     if (!request.headers.Authorization) {
@@ -26,7 +26,7 @@ instance.interceptors.request.use(
   }
 );
 
-instance.interceptors.response.use(
+AxiosConfig.interceptors.response.use(
   (response) => {
     console.log(response);
     // Edit response config
@@ -38,4 +38,4 @@ instance.interceptors.response.use(
   }
 );
 
-export default instance;
+export default AxiosConfig;
