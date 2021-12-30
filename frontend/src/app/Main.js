@@ -46,7 +46,7 @@ const TopLinks = [
     iconType: "home",
     isActive: true,
     "aria-current": true,
-    onClick: () => {},
+    onClick: () => { },
     pinnable: false,
   },
 ];
@@ -103,9 +103,9 @@ const CollapsibleNavAll = (props) => {
   ];
 
   const LearnLinks = [
-    { label: "Docs", onClick: () => {} },
-    { label: "Blogs", onClick: () => {} },
-    { label: "Webinars", onClick: () => {} },
+    { label: "Docs", onClick: () => { } },
+    { label: "Blogs", onClick: () => { } },
+    { label: "Webinars", onClick: () => { } },
     { label: "Elastic.co", href: "https://elastic.co" },
   ];
   /**
@@ -254,7 +254,7 @@ const CollapsibleNavAll = (props) => {
               className="eui-textInheritColor"
               href="#/navigation/collapsible-nav"
               onClick={(e) => e.stopPropagation()}
-              // to="/configure"
+            // to="/configure"
             >
               Reports
             </a>
@@ -373,20 +373,25 @@ const CollapsibleNavAll = (props) => {
 
       {/* <EuiPageTemplate template="centeredBody">
           <Switch>
-            <Route path="/report" component={ReportPage} />
-            <Route path="/upload" component={UploadPage} />
-            <Route path="/login" component={LoginPage} />
-            <Redirect to="/login" />
-          </Switch>
+              <Route path="/reports/search-table" component={SearchTablePage} />
+              <Route path="/reports/data-grid" component={DataGridPage} />
+              <Route path="/reports/charts" component={ChartPage} />
+              <Route path="/manage/upload" component={UploadInvoicePage} />
+              <Route path="/manage/extraction" component={ExtractionPage} />
+              <Route path="/manage/template" component={TemplatePage} />
+              <Route path="/manage/taxes" component={TaxesPage} />
+              <Redirect to="/reports/search-table" />
+            </Switch>
         </EuiPageTemplate> */}
 
-      <EuiPage paddingSize="none" className="container mt-2">
-        <EuiPageBody paddingSize="l">
+      <EuiPage paddingSize="none" className="container mt-1">
+        <EuiPageBody paddingSize="l" >
           <EuiPageContent
             verticalPosition="center"
             horizontalPosition="center"
             className="w-full"
             // paddingSize="none"
+            style={{ background: "transparent", border: "0px", boxShadow: "none" }}
           >
             <Switch>
               <Route path="/reports/search-table" component={SearchTablePage} />

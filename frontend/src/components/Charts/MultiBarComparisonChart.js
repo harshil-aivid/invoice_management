@@ -2,11 +2,11 @@ import { Axis, BarSeries, Chart, Settings } from "@elastic/charts"
 import React from "react"
 import { EUI_CHARTS_THEME_DARK, EUI_CHARTS_THEME_LIGHT } from '@elastic/eui/dist/eui_charts_theme';
 
-const MultiBarComparisonChart = ()=>{
-    return <Chart size={{height: 400 , width :650}}>
+const MultiBarComparisonChart = () => {
+  return <Chart size={{ height: 400, width: 650 }}>
     <Settings
-    //   theme={theme}
-    theme={EUI_CHARTS_THEME_LIGHT}
+      //   theme={theme}
+      theme={EUI_CHARTS_THEME_LIGHT}
       rotation={0}
       showLegend={true}
       legendPosition="right"
@@ -34,7 +34,7 @@ const MultiBarComparisonChart = ()=>{
       position={"left"}
     />
   </Chart>
-  
+
 }
 
 export default MultiBarComparisonChart;

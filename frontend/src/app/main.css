@@ -8,7 +8,7 @@
 
 .container {
   width: 80%;
-  margin: 4rem auto;
+  margin: 1.5rem auto;
 }
 .euiPageContent.euiPageContent--horizontalCenter {
   width: 100% !important;
@@ -21,3 +21,19 @@
 .euiFilePicker__wrap {
   height: 100% !important;
 }
+.stat-name {
+  font-weight: normal;
+  font-size: 1.5rem;
+  color: #0092cb;
+}
+.stat-percentage {
+  font-size: 2.5rem;
+  color: #c90f96;
+}
+.euiSuperDatePicker__flexWrapper {
+  width: 500px !important;
+}
+
+/* $aivid-blue: #0092cb;
+$aivid-pink: #c90f96;
+$aivid-voilet: #4a338e; */
