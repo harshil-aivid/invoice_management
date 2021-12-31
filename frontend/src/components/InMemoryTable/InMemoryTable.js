@@ -408,8 +408,8 @@ const InMemoryTable = () => {
   };
 
   const pagination = {
-    initialPageSize: 5,
-    pageSizeOptions: [3, 5, 8],
+    initialPageSize: 10,
+    pageSizeOptions: [10, 20, 50, 100],
   };
 
   const selectionValue = {

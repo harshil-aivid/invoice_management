@@ -5,7 +5,7 @@ import dateMath from "@elastic/datemath";
 export default class SuperDateTimePicker extends React.Component {
   state = {
     recentlyUsedRanges: [],
-    start: "now-1d",
+    start: "now-3y",
     end: "now",
     isLoading: false,
     isPaused: true,
@@ -44,7 +44,7 @@ export default class SuperDateTimePicker extends React.Component {
   onRefresh = ({ start, end, refreshInterval }) => {
     return new Promise((resolve) => {
       setTimeout(resolve, 100);
-    }).then(() => {});
+    }).then(() => { });
   };
 
   startLoading = () => {

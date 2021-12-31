@@ -24,6 +24,9 @@ import {
   EuiPageBody,
   EuiPageContent,
   EuiSpacer,
+  EuiHeaderLink,
+  EuiHeaderSectionItem,
+  EuiHeaderLinks,
 } from "@elastic/eui";
 
 import { Switch, Route, Redirect, useHistory } from "react-router-dom";
@@ -36,6 +39,7 @@ import TaxesPage from "../pages/manage/TaxesPage";
 
 import "./main.css";
 import UploadInvoicePage from "../pages/manage/UploadInvoicePage";
+import GlobalProvider from "../components/GlobalToast/GlobalProvider";
 
 // import contentSvg from '../../images/content.svg';
 // import { useExitPath } from '../../services/routing/routing';
@@ -105,8 +109,8 @@ const CollapsibleNavAll = (props) => {
   const LearnLinks = [
     { label: "Docs", onClick: () => { } },
     { label: "Blogs", onClick: () => { } },
-    { label: "Webinars", onClick: () => { } },
-    { label: "Elastic.co", href: "https://elastic.co" },
+    // { label: "Webinars", onClick: () => { } },
+    // { label: "Elastic.co", href: "https://elastic.co" },
   ];
   /**
    * Accordion toggling
@@ -353,7 +357,7 @@ const CollapsibleNavAll = (props) => {
   ];
 
   return (
-    <>
+    <GlobalProvider>
       <EuiHeader
         position="fixed"
         sections={[
@@ -363,6 +367,24 @@ const CollapsibleNavAll = (props) => {
           },
           {
             items: [
+
+              <EuiHeaderSectionItem>
+                <EuiHeaderLinks aria-label="App navigation links example">
+                  {/* <EuiHeaderLink isActive>Docs</EuiHeaderLink>
+
+                  <EuiHeaderLink>Code</EuiHeaderLink> */}
+
+                  <EuiHeaderLink >     <EuiButton
+                    fill
+                    size="s"
+                    iconType="plusInCircleFilled"
+                    onClick={() => redirectTo("/manage/upload")}
+                  >
+                    Add Invoice
+                  </EuiButton></EuiHeaderLink>
+                </EuiHeaderLinks>
+              </EuiHeaderSectionItem>
+              ,
               <EuiHeaderSectionItemButton aria-label="Account menu">
                 <EuiAvatar name="Harshavadan Patel" size="s" />
               </EuiHeaderSectionItemButton>,
@@ -406,7 +428,7 @@ const CollapsibleNavAll = (props) => {
           </EuiPageContent>
         </EuiPageBody>
       </EuiPage>
-    </>
+    </GlobalProvider>
   );
 };
 

@@ -49,7 +49,7 @@ const ChartControlPanel = () => {
             />
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiFormRow label="Time by">
+            <EuiFormRow label="Time Trend by">
               <EuiSuperSelect
                 options={timeSegmentOptions}
                 valueOfSelected={selectedTimeSegment}
@@ -59,7 +59,7 @@ const ChartControlPanel = () => {
             </EuiFormRow>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiFormRow label="Compare among">
+            <EuiFormRow label="Comparisons on">
               <EuiSuperSelect
                 options={groupByOptions}
                 valueOfSelected={selectedGroupBy}

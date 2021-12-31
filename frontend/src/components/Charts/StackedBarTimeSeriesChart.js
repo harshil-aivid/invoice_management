@@ -36,6 +36,7 @@ const StackedBarTimeSeriesChart = ({ chartData = [] }) => {
             <Axis
                 id="left-axis"
                 position={"left"}
+                ticks={5}
             />
         </Chart>
     </Fragment>)

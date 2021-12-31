@@ -33,6 +33,10 @@
 .euiSuperDatePicker__flexWrapper {
   width: 500px !important;
 }
+.max-550 {
+  max-height: 550px;
+  overflow: auto;
+}
 
 /* $aivid-blue: #0092cb;
 $aivid-pink: #c90f96;

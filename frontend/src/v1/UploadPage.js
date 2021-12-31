@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useContext } from "react";
 
 import {
   EuiFilePicker,
@@ -40,8 +40,9 @@ export default () => {
   return (
     <div className="w-full">
       <EuiFlexGroup>
-        <EuiFlexItem grow={1}>
+        <EuiFlexItem grow={false} className="max-550">
           <FilePond
+
             allowMultiple={true}
             files={files}
             onupdatefiles={setFiles}

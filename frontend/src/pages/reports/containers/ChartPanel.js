@@ -48,7 +48,7 @@ const ChartCharts = () => {
               <EuiFlexGroup direction="column">
                 <EuiFlexItem>
                   <EuiPanel>
-                    <TimeSeriesLineChart />
+                    <TimeSeriesLineChart chartData={timeChart} />
                   </EuiPanel>
                 </EuiFlexItem>
               </EuiFlexGroup>

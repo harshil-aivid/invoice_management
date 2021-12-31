@@ -19,23 +19,23 @@ const keyToReadableFormat = (key, interval) => {
 
 export default class ChartProvider extends Component {
   state = {
-    startTime: moment().subtract(1, "d"),
+    startTime: moment().subtract(3, "y"),
     endTime: moment(),
     start: "now",
     end: "now",
     timeSegmentOptions: [
-      { inputDisplay: "Daily", value: "%d-%m-%Y", formatAs: "MMM Do YYYY" },
       { inputDisplay: "Day of week", value: "%w", formatAs: "Do MMM" },
+      { inputDisplay: "Daily", value: "%d-%m-%Y", formatAs: "MMM Do YYYY" },
       { inputDisplay: "Monthly", value: "%m", formatAs: "MMM YYYY" },
       { inputDisplay: "Yearly", value: "%Y", formatAs: "YYYY" },
     ],
-    selectedTimeSegment: "%d-%m-%Y",
+    selectedTimeSegment: "%w",
     groupByOptions: [
       { inputDisplay: "Gas Type", value: "listOfPurchases.gasTypeName" },
-      { inputDisplay: "Company", value: "soldTo" },
       { inputDisplay: "Store", value: "to" },
+      { inputDisplay: "Company", value: "soldTo" },
     ],
-    selectedGroupBy: "soldTo",
+    selectedGroupBy: "listOfPurchases.gasTypeName",
     companyOptions: [],
     storeOptions: [],
     selectedCompanies: [],
@@ -47,6 +47,7 @@ export default class ChartProvider extends Component {
   };
 
   componentDidMount = () => {
+    this.fetchOptionsList()
     this.fetchData()
   }
 
@@ -69,7 +70,7 @@ export default class ChartProvider extends Component {
       .then(({ data }) => {
         const storeOptions = data.storeOptions.map((value) => ({ value, label: value }))
         const companyOptions = data.companyOptions.map((value) => ({ value, label: value }))
-        this.setState({ storeOptions, companyOptions })
+        this.setState({ storeOptions, companyOptions, selectedStores: storeOptions }, () => this.fetchData())
       })
       .catch((e) => {
         console.log(e)
@@ -77,10 +78,16 @@ export default class ChartProvider extends Component {
   }
 
   fetchCharts = () => {
-    const { selectedGroupBy, selectedTimeSegment } = this.state;
+    const { selectedGroupBy, selectedTimeSegment, startTime, endTime, selectedStores } = this.state;
+    const startISOString = startTime.utc().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
+    const endISOString = endTime.utc().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
+    const storeFilterList = selectedStores.map(({ value }) => value)
     AxiosConfig.post("/v1/invoice/get-time-chart-data", {
       timeFormat: selectedTimeSegment,
-      entityField: selectedGroupBy
+      entityField: selectedGroupBy,
+      startISOString,
+      endISOString,
+      storeFilterList
     })
       .then(({ data }) => {
 
@@ -91,7 +98,10 @@ export default class ChartProvider extends Component {
         console.log(e)
       });
     AxiosConfig.post("/v1/invoice/get-entity-chart-data", {
-      entityField: selectedGroupBy
+      entityField: selectedGroupBy,
+      startISOString,
+      endISOString,
+      storeFilterList
     })
       .then(({ data }) => {
         this.setState({ entityChart: data.map((obj) => flatObject(obj)) })
@@ -103,7 +113,15 @@ export default class ChartProvider extends Component {
 
   fetchStats = () => {
     this.setState({ isStatLoading: true })
-    AxiosConfig.post("/v1/invoice/get-stats")
+    const { startTime, endTime, selectedStores } = this.state;
+    const storeFilterList = selectedStores.map(({ value }) => value)
+    const startISOString = startTime.utc().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
+    const endISOString = endTime.utc().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
+    AxiosConfig.post("/v1/invoice/get-stats", {
+      startISOString,
+      endISOString,
+      storeFilterList
+    })
       .then(({ data: { days, sumOfQuantity, sumOfTotalAmount } }) => {
         this.setState({ sumOfQuantity, sumOfTotalAmount, avgOfTotalAmount: percentage(sumOfTotalAmount, days), avgOfQuantity: percentage(sumOfQuantity, days), isStatLoading: false })
       })
@@ -121,6 +139,7 @@ export default class ChartProvider extends Component {
   };
 
   handleRangeUpdate = (startTime, endTime, start, end) => {
+    console.log(startTime, endTime, start, end)
     this.setState({ startTime, endTime, start, end }, () => this.fetchData());
   };
   handleRefreshRateUpdate = (isPaused, refreshRate) => {
@@ -135,15 +154,14 @@ export default class ChartProvider extends Component {
   };
 
   handleStoresUpdate = (selectedStores) => {
-    this.setState({ selectedStores });
+    this.setState({ selectedStores }, () => this.fetchData());
   };
   handleCompanyUpdate = (selectedCompanies) => {
     this.setState({ selectedCompanies });
   };
 
   fetchData = () => {
-    console.log("FETCH BITCH")
-    this.fetchOptionsList()
+
     this.fetchCharts()
     this.fetchStats()
   };
