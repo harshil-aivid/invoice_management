@@ -30,7 +30,7 @@ export default () => {
   });
   const { dispatchGlobalAction } = useContext(GlobalContext)
   const uploadPdfs = async () => {
-    console.log("FIles : ", files);
+    console.log("FIles : ", files.map(({ filename }) => filename))
 
     const formData = new FormData();
     files.forEach(({ file }) => formData.append("pdfs", file));
@@ -43,12 +43,13 @@ export default () => {
     });
     const erroredFiles = resp.data.filter(({ error }) => error)
     setJsonContent(resp.data);
-    setFiles([])
     if (erroredFiles.length) {
+      setFiles(files.filter(({ filename }) => erroredFiles.some(({ fileName: errorFileName }) => errorFileName === filename)))
       dispatchGlobalAction("ADD_TOAST", { color: "warning", title: "Pdf not parsed correctly", text: <p>{erroredFiles.map(({ fileName }) => fileName).join(" ")}</p>, })
     }
     else {
 
+      setFiles([])
       dispatchGlobalAction("ADD_TOAST", { color: "success", title: "Succesfully Uploaded", text: <p>Thanks for your patience!</p>, })
     }
 
